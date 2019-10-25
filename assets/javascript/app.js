@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     var correctAnswers = 0;
     var incorrectAnswers = 0;
-    var remainingAnswers = 0;
+    var unansweredQuestions = 0;
     var index = 0;
     var timer;
     var counter = 0;
@@ -37,12 +37,12 @@ $(document).ready(function() {
             right: 1
         },
         {
-            Question: "What was the name of Leslie's boss?"
+            Question: "What was the name of Leslie's boss?",
             Answer: ["Tom Haverford", "Mark Brendanawicz", "Jerry Gergich", "Ron Swanson"],
             right: 3
         },
         {
-            Question: "Who was Leslie's political crush?"
+            Question: "Who was Leslie's political crush?",
             Answer: ["Barack Obama", "Bill Clinton", "Joe Biden", "George W. Bush"],
             right: 2
 
@@ -59,7 +59,7 @@ $(document).ready(function() {
             $("#answer-buttons").append(`<button class="btn res" data-q=${index} data-res=${i}>${questions[index].Answer[i]}</button>`)
 
         }
-        counter = 10
+        counter = 30
         timer = setInterval(countdown, 1000);
 
         $(".res").on("click", function() {
@@ -81,7 +81,7 @@ $(document).ready(function() {
         counter--
         $("#timer").text(counter)
         if (counter === 0) {
-            remainingAnswers++
+            unansweredQuestions++;
             goNext()
         }
     }
@@ -100,7 +100,13 @@ $(document).ready(function() {
 
     function results() {
         console.log("game over")
+        $("#question_container").hide();
+        //$("#results").text('<h3>Thank you for playing</h3>')
+        $("#results").append("correct answers = " + correctAnswers + "<div>" + " incorrect answers = " + incorrectAnswers + "<div>" + "unanswered questions = " + unansweredQuestions);
+        // $("#results").html(");
+        //$("#results").html("unanswered questions = " + unansweredQuestions);
 
 
     }
+
 })
