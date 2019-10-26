@@ -7,11 +7,14 @@ body {
 }
 
 .container {
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 500px;
+    max-width: 80%;
+    max-height: 60%;
     background-color: blueviolet;
     border: 5px;
     text-align: center;
+    padding: 20px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -23,8 +26,36 @@ body {
     margin: 10px;
     gap: 10px;
     background-color: ;
+    font-size: 20px;
+}
+
+.btn {
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    border-color: blue;
+}
+
+#start-button {
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    width: 200px;
+    margin: 40px;
 }
 
 .hide {
     display: none;
+}
+
+.results {
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+    gap: 20px;
 }

@@ -9,16 +9,26 @@ $(document).ready(function() {
     var counter = 0;
 
 
+    function reset() {
+        correctAnswers = 0;
+        incorrectAnswers = 0;
+        unansweredQuestions = 0;
+        index = 0;
+        counter = 0;
+
+        $(".results").hide();
+        $("#start-button").hide();
+        $("#question_container").show();
+        $("#remaining-time").show();
+
+    }
 
     $("#start-button").click(startGame);
 
     function startGame() {
         console.log('started');
-        $("#start-button").hide();
-        $("#question_container").show();
+        reset()
         showQuestion()
-
-        //$(#question_container).
     }
 
     var questions = [{
@@ -98,14 +108,22 @@ $(document).ready(function() {
 
     }
 
-    function results() {
-        console.log("game over")
-        $("#question_container").hide();
-        //$("#results").text('<h3>Thank you for playing</h3>')
-        $("#results").append("correct answers = " + correctAnswers + "<div>" + " incorrect answers = " + incorrectAnswers + "<div>" + "unanswered questions = " + unansweredQuestions);
-        // $("#results").html(");
-        //$("#results").html("unanswered questions = " + unansweredQuestions);
 
+    function results() {
+
+        tR = $("<button>Start Over</button>");
+        $(tR).on("click", function() {
+            console.log("Button pushed")
+
+            startGame()
+        })
+        $("#question_container").hide();
+        $("#remaining-time").hide();
+        $(".results").empty();
+        $(".results").show();
+        $(".results").append("correct answers = " + correctAnswers + "<div>" + " incorrect answers = " + incorrectAnswers + "<div>" + "unanswered questions = " + unansweredQuestions);
+
+        $(".results").append(tR);
 
     }
 
