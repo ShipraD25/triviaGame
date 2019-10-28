@@ -8,10 +8,10 @@ body {
 }
 
 .container {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 800px;
     max-width: 80%;
-    max-height: 60%;
+    max-height: 80%;
     background-color: yellowgreen;
     border: 5px;
     text-align: center;
@@ -24,10 +24,10 @@ body {
 
 .btn-layout {
     display: grid;
-    margin: 10px;
-    gap: 10px;
+    margin: 60px;
+    gap: 20px;
     background-color: ;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .btn {
@@ -68,4 +68,14 @@ body {
     font-weight: bold;
     width: 200px;
     margin: 40px;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#question {
+    font-weight: bold;
+    padding-top: 30px;
 }
