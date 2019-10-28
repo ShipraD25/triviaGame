@@ -29,7 +29,6 @@ $(document).ready(function() {
     $("#start-button").click(startGame);
 
     function startGame() {
-        console.log('started');
         reset()
         showQuestion()
     }
@@ -84,22 +83,34 @@ $(document).ready(function() {
             // verify if the response is equal to the value of r for the question q
             if (questions[q].right === parseInt(r)) {
                 correctAnswers++;
-
-
             } else {
                 incorrectAnswers++;
-
             }
-            goNext()
+            goNext();
+            //show();
+            // stopDisplay();
+
         })
     }
+
+    /* function show() {
+         $("#myDiv").css("display", "block");
+         //$("#question_container").hide();
+         setTimeout(stopDisplay, 5000); // 5 seconds
+     }
+
+     function stopDisplay() {
+         $("#myDiv").css("display", "none");
+         //$("#question_conatiner").show();
+         goNext()
+     }*/
 
     function countdown() {
         counter--
         $("#timer").text(counter)
         if (counter === 0) {
             unansweredQuestions++;
-            goNext()
+            goNext();
         }
     }
 
@@ -136,27 +147,3 @@ $(document).ready(function() {
     }
 
 })
-
-<
-input type = "button"
-value = "Show image for 5 seconds"
-onclick = "show()" > < br > < br >
-    <
-    div id = "myDiv"
-style = "display:none" > < img id = "myImage"
-src = "images/ajax-loader.gif" > < /div><br>
-
-<
-script type = "text/javascript" >
-
-    function show() {
-        document.getElementById("myDiv").style.display = "block";
-        setTimeout("hide()", 5000); // 5 seconds
-    }
-
-function hide() {
-    document.getElementById("myDiv").style.display = "none";
-}
-
-<
-/script>
