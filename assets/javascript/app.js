@@ -7,6 +7,9 @@ $(document).ready(function() {
     var index = 0;
     var timer;
     var counter = 0;
+    //var pick;
+    //newArray = [];
+    //var isCorrectAnswer = False;
 
 
     function reset() {
@@ -34,7 +37,8 @@ $(document).ready(function() {
     var questions = [{
             Question: "Where does the show take place?",
             Answer: ["Springfield", "Newyork", "Pawnee", "Quahog"],
-            right: 2
+            right: 2,
+            //photo: "assets/images/andy.gif"
         },
         {
             Question: "What was the town's mini-horse called?",
@@ -80,8 +84,11 @@ $(document).ready(function() {
             // verify if the response is equal to the value of r for the question q
             if (questions[q].right === parseInt(r)) {
                 correctAnswers++;
+
+
             } else {
                 incorrectAnswers++;
+
             }
             goNext()
         })
@@ -95,6 +102,7 @@ $(document).ready(function() {
             goNext()
         }
     }
+
 
     function goNext() {
         clearInterval(timer)
@@ -111,7 +119,7 @@ $(document).ready(function() {
 
     function results() {
 
-        tR = $("<button>Start Over</button>");
+        tR = $(`<button id="startOver">Start Over ?</button>`);
         $(tR).on("click", function() {
             console.log("Button pushed")
 
@@ -128,3 +136,27 @@ $(document).ready(function() {
     }
 
 })
+
+<
+input type = "button"
+value = "Show image for 5 seconds"
+onclick = "show()" > < br > < br >
+    <
+    div id = "myDiv"
+style = "display:none" > < img id = "myImage"
+src = "images/ajax-loader.gif" > < /div><br>
+
+<
+script type = "text/javascript" >
+
+    function show() {
+        document.getElementById("myDiv").style.display = "block";
+        setTimeout("hide()", 5000); // 5 seconds
+    }
+
+function hide() {
+    document.getElementById("myDiv").style.display = "none";
+}
+
+<
+/script>
