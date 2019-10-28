@@ -139,7 +139,7 @@ $(document).ready(function() {
         clearInterval(timer)
         index++
         if (index < questions.length) {
-            console.log("go next", correctAnswers, incorrectAnswers);
+            //console.log("go next", correctAnswers, incorrectAnswers);
             showQuestion();
         } else {
             results()
