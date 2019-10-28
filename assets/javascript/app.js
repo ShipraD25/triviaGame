@@ -9,31 +9,6 @@ $(document).ready(function() {
     var counter = 0;
     var lastAnswerCorrect;
 
-
-    function reset() {
-        // console.log("In reset")
-        correctAnswers = 0;
-        incorrectAnswers = 0;
-        unansweredQuestions = 0;
-        index = 0;
-        counter = 0;
-        lastAnswerCorrect = 0;
-
-        $(".results").hide();
-        $("#start-button").hide();
-        $("#question_container").show();
-        $("#remaining-time").show();
-
-    }
-
-    $("#start-button").click(startGame);
-
-    function startGame() {
-        //console.log("In startGame")
-        reset()
-        showQuestion()
-    }
-
     var questions = [{
             Question: "Where does the show take place?",
             Answer: ["Springfield", "Newyork", "Pawnee", "Quahog"],
@@ -65,24 +40,48 @@ $(document).ready(function() {
             image: "assets/images/lesliefangirling.gif"
 
         }
-
     ]
 
+    $("#start-button").click(startGame);
 
-    function showQuestion() {
-        //console.log("In showQuestion")
 
-        $("#question").text(questions[index].Question);
+    function reset() {
+        correctAnswers = 0;
+        incorrectAnswers = 0;
+        unansweredQuestions = 0;
+        index = 0;
+
+        resetPerQuestion()
+
+        $(".results").hide();
+        $("#start-button").hide();
+
+    }
+
+    function startGame() {
+        reset()
+        showQuestion()
+    }
+
+    function resetPerQuestion() {
+        lastAnswerCorrect = 0;
+        $("#question_container").show();
+        $("#remaining-time").show();
+        $("#image_container").hide();
         $("#answer-buttons").empty();
-        for (var i = 0; i < questions[index].Answer.length; i++) {
-            $("#answer-buttons").append(`<button class="btn res" data-q=${index} data-res=${i}>${questions[index].Answer[i]}</button>`)
-
-        }
+        clearInterval(timer)
         counter = 30
         timer = setInterval(countdown, 1000);
+    }
+
+    function showQuestion() {
+        resetPerQuestion()
+        $("#question").text(questions[index].Question);
+        for (var i = 0; i < questions[index].Answer.length; i++) {
+            $("#answer-buttons").append(`<button class="btn res" data-q=${index} data-res=${i}>${questions[index].Answer[i]}</button>`)
+        }
 
         $(".res").on("click", function() {
-            //console.log(this)
             var q = $(this).attr("data-q")
             var r = $(this).attr("data-res")
 
@@ -107,24 +106,15 @@ $(document).ready(function() {
     }
 
     function displayImage() {
-        //console.log("In displayImage")
         msg = "<h2>" + getMsg() + "</h2>\n"
         msg = msg + "<img src=" + questions[index].image + " width='400px'>"
         $("#image_container").html(msg);
         $("#question_container").hide()
         $("#image_container").show()
-        setTimeout(myStopFunction, 3000)
-    }
-
-    function myStopFunction() {
-        // console.log("In myStopFunction")
-        $("#question_container").show()
-        $("#image_container").hide();
-        goNext()
+        setTimeout(goNext, 3000)
     }
 
     function countdown() {
-        //console.log("In countdown")
         counter--
         $("#timer").text(counter)
         if (counter === 0) {
@@ -135,26 +125,19 @@ $(document).ready(function() {
 
 
     function goNext() {
-        //console.log("In goNext")
-        clearInterval(timer)
         index++
         if (index < questions.length) {
-            //console.log("go next", correctAnswers, incorrectAnswers);
             showQuestion();
         } else {
             results()
         }
-
     }
 
 
     function results() {
-        //console.log("In results")
-
+        resetPerQuestion()
         tR = $(`<button id="startOver">Start Over ?</button>`);
         $(tR).on("click", function() {
-            //console.log("Button pushed")
-
             startGame()
         })
         $("#question_container").hide();
