@@ -4,7 +4,7 @@ This is a Trivia game made using JavaScript for the logic and jQuery to manipula
 
 This game shows only one question until the player answers it or their time runs out.
 
-If the player selects the correct answer, correct answers go up. After a few seconds, the next question is displayed. This is done without user input.
+If the player selects the correct answer, correct answers go up and a gif is shown with the message of you're answer is right. After a few seconds, the next question is displayed. This is done without user input.
 
 It's the same for wrong answers and time-outs.
 
